@@ -1,0 +1,17 @@
+[log]
+logDir = "./log"
+logFile = "signaling"
+# DEBUG INFO WARNING ERROR FATAL
+# FATAL 请慎用，会导致进程退出
+logLevel = "DEBUG"
+logToStderr = true
+
+[http]
+port=8080
+staticDir="./static"
+
+[https]
+port=8081
+cert="./conf/cert.pem"
+key="./conf/key.pem"
+
