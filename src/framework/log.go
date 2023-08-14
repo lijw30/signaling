@@ -80,6 +80,11 @@ func (l *ComLog) Debugf(format string, args ...interface{}) {
 	glog.Debugf(totalLog, args...)
 }
 
+func (l *ComLog) Errorf(format string, args ...interface{}) {
+	totalLog := l.getPrefixLog() + format
+	glog.Errorf(totalLog, args...)
+}
+
 func (l *ComLog) Infof(format string, args ...interface{}) {
 	totalLog := l.getPrefixLog() + format
 	glog.Infof(totalLog, args...)

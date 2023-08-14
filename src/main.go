@@ -12,6 +12,9 @@ func main() {
 		panic(err)
 	}
 
+	// 静态资源处理 /static
+	framework.RegisterStaticUrl()
+
 	// 启动http
 	go startHttp()
 

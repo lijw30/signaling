@@ -29,7 +29,7 @@ func entry(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(""))
 		return
 	}
-	fmt.Println("entry url: ", r.URL.Path)
+	glog.Infof("========== entry url:%s ", r.URL.Path)
 	if action, ok := GActionRouter[r.URL.Path]; ok {
 		if action != nil {
 			cr := &ComRequest{
@@ -56,6 +56,7 @@ func entry(w http.ResponseWriter, r *http.Request) {
 			cr.Logger.TimeEnd("totalCost")
 
 			cr.Logger.Infof("hello world")
+
 		} else {
 			responseError(w, r, http.StatusInternalServerError, "Internal server error")
 		}
@@ -85,6 +86,12 @@ func StartHttp() error {
 }
 
 func StartHttps() error {
+	// https://ljwstream.live:8081/xrtcclient/push?uid=888&streamName=666&audio=1&video=1
 	glog.Infof("start https server on port:%d", gconf.Https.Port)
 	return http.ListenAndServeTLS(fmt.Sprintf(":%d", gconf.Https.Port), gconf.Https.Cert, gconf.Https.Key, nil)
+}
+
+func RegisterStaticUrl() {
+	fs := http.FileServer(http.Dir(gconf.Http.StaticDir))
+	http.Handle(gconf.Http.StaticPrefix, http.StripPrefix(gconf.Http.StaticPrefix, fs))
 }

@@ -8,8 +8,9 @@ import (
 var gconf *FrameworkConf
 
 type HttpConfig struct {
-	Port      int    `toml:"port"`
-	StaticDir string `toml:"staticDir"`
+	Port         int    `toml:"port"`
+	StaticDir    string `toml:"staticDir"`
+	StaticPrefix string `toml:"staticPrefix"`
 }
 
 type HttpsConfig struct {
