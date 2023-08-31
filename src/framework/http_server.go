@@ -55,7 +55,7 @@ func entry(w http.ResponseWriter, r *http.Request) {
 			action.Execute(w, cr)
 			cr.Logger.TimeEnd("totalCost")
 
-			cr.Logger.Infof("hello world")
+			cr.Logger.Infof("")
 
 		} else {
 			responseError(w, r, http.StatusInternalServerError, "Internal server error")

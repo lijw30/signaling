@@ -19,10 +19,18 @@ type HttpsConfig struct {
 	Key  string `toml:"key"`
 }
 
+type XrpcConfig struct {
+	ConnectTimeout int    `toml:"connectTimeout"`
+	ReadTimeout    int    `toml:"readTimeout"`
+	WriteTimeout   int    `toml:"writeTimeout"`
+	Server         string `toml:"server"`
+}
+
 type FrameworkConf struct {
 	Log   LogConfig   `toml:"log"`
 	Http  HttpConfig  `toml:"http"`
 	Https HttpsConfig `toml:"https"`
+	Xrpc  XrpcConfig  `toml:"xrpc"`
 }
 
 type LogConfig struct {
@@ -47,4 +55,8 @@ func GetConf() *FrameworkConf {
 
 func GetStaticDir() string {
 	return gconf.Http.StaticDir
+}
+
+func GetXrpcConfig() XrpcConfig {
+	return gconf.Xrpc
 }
